@@ -98,6 +98,9 @@
 }
 
 @media (max-width: 350px) {
+  .Home {
+    width: 100vw;
+  }
   .pokedex {
     width: 310px;
     padding: 0;
