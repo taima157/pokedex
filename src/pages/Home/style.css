@@ -11,7 +11,8 @@
   gap: 40px;
   padding: 20px;
   margin-bottom: 20px;
-  width: 600px;
+  max-width: 600px;
+  width: 100%;
   align-items: center;
   justify-content: center;
 }
@@ -20,6 +21,11 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+.search-buttons-field {
+  display: flex;
+  gap: 20px;
 }
 
 .search-bar input {
@@ -73,4 +79,32 @@
   padding: 5px;
   font-size: 18px;
   cursor: pointer;
+}
+
+@media (max-width: 630px) {
+  .search-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .search-bar input {
+    width: 100%;
+  }
+
+  .search-buttons-field {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 350px) {
+  .pokedex {
+    width: 310px;
+    padding: 0;
+    gap: 10px 5px;
+  }
+  .prev-and-next-button {
+    width: 80%;
+    gap: 30px;
+  }
 }

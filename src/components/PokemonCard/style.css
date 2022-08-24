@@ -20,7 +20,7 @@
 }
 
 .pokemon-sprite img {
-  width: 200px;
+  width: 100%;
 }
 
 .pokemon-stats {
@@ -140,4 +140,42 @@
 .dark {
   background-color: #1a0e0e;
   color: whitesmoke;
+}
+
+@media (max-width: 630px) {
+  .PokemonCard {
+    max-width: 150px;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .pokemon-sprite {
+    width: 130px;
+    height: 130px;
+  }
+
+  .pokemon-id {
+    font-size: 10px;
+  }
+
+  .pokemon-stats {
+    padding: 5px 0;
+  }
+  
+  .pokemon-name {
+    font-size: 16px;
+  }
+
+  .types {
+    width: 100%;
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+  }
+  
+  .types div {
+    padding: 1px 5px;
+    border-radius: 5px;
+  }
+  
 }

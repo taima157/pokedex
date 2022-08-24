@@ -47,8 +47,10 @@ export default function Home() {
             onChange={(e) => setPokemon(e.target.value)}
             placeholder="Search a pokemon"
           />
-          <button onClick={() => searchingPokemon()}>Search</button>
-          <button onClick={() => setSearchPokemon()}>Clean</button>
+          <div className="search-buttons-field">
+            <button onClick={() => searchingPokemon()}>Search</button>
+            <button onClick={() => setSearchPokemon()}>Clean</button>
+          </div>
         </div>
         <div className="searching-pokemon">{searchPokemon}</div>
       </div>

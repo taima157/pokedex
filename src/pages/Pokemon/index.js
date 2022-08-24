@@ -5,8 +5,8 @@ import api from "../../services/api";
 
 export default function Pokemon() {
   const { id } = useParams();
-  const [idPosition, setIdPosition] = useState(0);
   const history = useHistory();
+  const [idPosition, setIdPosition] = useState(0);
   const [pokemon, setPokemon] = useState([]);
   const [sprite, setSprite] = useState("");
   const [abilities, setAbilities] = useState([]);
@@ -77,13 +77,15 @@ export default function Pokemon() {
                 return (
                   <div className="stats-bar" key={value}>
                     <span>{stat.stat.name}:</span>
-                    <div className="bar">
-                      <div
-                        className="bar-count"
-                        style={{ width: stat.base_stat + 200 + "px" }}
-                      ></div>
+                    <div className="bar-number">
+                      <div className="bar">
+                        <div
+                          className="bar-count"
+                          style={{ width: stat.base_stat + "%" }}
+                        ></div>
+                      </div>
+                      <p>{stat.base_stat}</p>
                     </div>
-                    <p>{stat.base_stat}</p>
                   </div>
                 );
               })}

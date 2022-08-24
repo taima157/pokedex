@@ -17,3 +17,9 @@
 .Header a {
   text-decoration: none;
 }
+
+@media (max-width: 630px) {
+  .Header {
+    justify-content: center;
+  }
+}
