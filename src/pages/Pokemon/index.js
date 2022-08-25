@@ -41,7 +41,7 @@ export default function Pokemon() {
         <div className="infos-base-stats">
           <div className="infos">
             <div className="sprite">
-              <img src={sprite} alt="" />
+              <img src={sprite} alt={`Sprite ${pokemon.name}`} />
             </div>
             <div className="stats">
               <div className="stats-abilities">
