@@ -26,7 +26,7 @@ export default function Pokemon() {
         setTypes(data.types);
         setIdPosition(data.id);
       } catch (error) {
-        history.replace("/");
+        history.replace("/pokemon/1");
       }
     }
     getPokemon();

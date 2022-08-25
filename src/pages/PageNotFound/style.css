@@ -1,0 +1,32 @@
+.PageNotFound {
+  height: 45vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.content h1 {
+  font-size: 4em;
+  color: #ff0000;
+  text-align: center;
+}
+
+.button-back-to-home {
+  text-decoration: none;
+  border: none;
+  border-radius: 10px;
+  background-color: #098dca;
+  color: #ffffff;
+  padding: 5px 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
