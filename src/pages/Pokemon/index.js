@@ -15,21 +15,21 @@ export default function Pokemon() {
 
   useEffect(() => {
     async function getPokemon() {
-      const response = await api.get(`api/v2/pokemon/${id}`);
-      const data = await response.data;
-      if (data.length === 0) {
+      try {
+        const response = await api.get(`api/v2/pokemon/${id}`);
+        const data = await response.data;
+        setPokemon(data);
+        setSprite(data.sprites.front_default);
+        setAbilities(data.abilities);
+        setStats(data.stats);
+        setTypes(data.types);
+        setIdPosition(data.id);
+      } catch (error) {
         history.replace("/");
-        return;
       }
-      setPokemon(data);
-      setSprite(data.sprites.front_default);
-      setAbilities(data.abilities);
-      setStats(data.stats);
-      setTypes(data.types);
-      setIdPosition(data.id);
     }
     getPokemon();
-  });
+  }, [id, history]);
 
   return (
     <div className="Pokemon">

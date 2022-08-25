@@ -11,9 +11,11 @@ export default function PokemonCard({ pokemon }) {
   const [hasError, setHasError] = useState(false);
   const url = pokemon.url;
   const endpoint = url.substring(19, url.length);
-
+  const [loading, setLoading] = useState(true)
+  
   useEffect(() => {
     async function getPokemonData() {
+      setLoading(false)
       try {
         const response = await api.get(endpoint);
         const data = await response.data;
@@ -23,10 +25,19 @@ export default function PokemonCard({ pokemon }) {
         setHasError(false);
       } catch (error) {
         setHasError(true);
+        setLoading(false)
       }
     }
     getPokemonData();
   });
+
+  if (loading) {
+    return (
+      <div className="PokemonCard">
+        <p>Loading...</p>
+      </div>
+    )
+  }
 
   if (hasError) {
     return <p className="error">Pokemon não encontrado</p>;
