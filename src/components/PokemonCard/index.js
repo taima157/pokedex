@@ -15,18 +15,18 @@ export default function PokemonCard({ pokemon }) {
   
   useEffect(() => {
     async function getPokemonData() {
-      setLoading(false)
       try {
         const response = await api.get(endpoint);
         const data = await response.data;
+        setLoading(true)
         setPokemonData(data);
         setSprite(data.sprites.front_default);
         setTypes(data.types);
         setHasError(false);
       } catch (error) {
         setHasError(true);
-        setLoading(false)
       }
+      setLoading(false)
     }
     getPokemonData();
   });
