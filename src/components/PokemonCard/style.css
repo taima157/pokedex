@@ -18,6 +18,7 @@
   height: 200px;
   background-color: #dad8d8;
   border-radius: 10px;
+  padding: 5px;
 }
 
 .pokemon-sprite img {
