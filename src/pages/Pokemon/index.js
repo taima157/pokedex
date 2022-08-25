@@ -18,6 +18,7 @@ export default function Pokemon() {
       try {
         const response = await api.get(`api/v2/pokemon/${id}`);
         const data = await response.data;
+        window.scrollTo(0, 0);
         setPokemon(data);
         setSprite(data.sprites.front_default);
         setAbilities(data.abilities);
