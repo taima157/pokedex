@@ -5,7 +5,6 @@ import "./style.css";
 
 export default function Home() {
   const [pokemon, setPokemon] = useState("");
-  const [pokedex, setPokedex] = useState();
   const [searchPokemon, setSearchPokemon] = useState();
   const [prev, setPrev] = useState("");
   const [next, setNext] = useState("");
@@ -14,7 +13,6 @@ export default function Home() {
 
   function changePokemonList(endpoint) {
     setEndpoint(endpoint);
-    setPokedex()
     window.scrollTo(0, 0);
   }
 
@@ -35,14 +33,9 @@ export default function Home() {
         setPrev(data.previous);
       }
       setPokemonList(data.results);
-      setPokedex(
-        pokemonList.map((pokemon, value) => {
-          return <PokemonCard key={value} pokemon={pokemon} />;
-        })
-      );
     }
     getPokemon();
-  }, [endpoint, pokemonList]);
+  }, [endpoint]);
 
   return (
     <div className="Home">
@@ -61,7 +54,11 @@ export default function Home() {
         </div>
         <div className="searching-pokemon">{searchPokemon}</div>
       </div>
-      <div className="pokedex">{pokedex}</div>
+      <div className="pokedex">
+        {pokemonList.map((pokemon, value) => {
+          return <PokemonCard key={value} pokemon={pokemon} />;
+        })}
+      </div>
       <div className="prev-and-next-button">
         <button onClick={() => changePokemonList(prev)}>Prev</button>
         <button onClick={() => changePokemonList(next)}>Next</button>
