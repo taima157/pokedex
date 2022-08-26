@@ -15,6 +15,7 @@ export default function PokemonCard({ pokemon }) {
 
   useEffect(() => {
     async function getPokemonData() {
+      setLoading(true);
       try {
         const response = await api.get(endpoint);
         const data = await response.data;
@@ -27,7 +28,9 @@ export default function PokemonCard({ pokemon }) {
       }
     }
     getPokemonData();
-    setLoading(false);
+    setInterval(() => {
+      setLoading(false);
+    }, 1400);
   }, [endpoint]);
 
   if (hasError) {
