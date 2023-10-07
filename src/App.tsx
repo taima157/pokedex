@@ -4,6 +4,7 @@ import { PokemonCardType } from "./types/pokemon";
 import PokemonCard from "./components/PokemonCard";
 import { PokemonClient, Type } from "pokenode-ts";
 import { COLORS_TYPES } from "./colors/color-types";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const api = new PokemonClient();
 const LIMIT_LIST = 20;
@@ -40,13 +41,19 @@ export default function App() {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  // const [totalList, setTotalList] = useState<number>(0);
+  const [isVisibleFilter, setIsVisibleFilter] = useState<boolean>(false);
+
+  function toggleIsVisibleFilter() {
+    setIsVisibleFilter(!isVisibleFilter);
+  }
 
   const [pokemonList, setPokemonList] = useState<Array<PokemonCardType> | null>(
     null
   );
 
   async function handleSelectType(type: string) {
+    toggleIsVisibleFilter();
+
     if (selectedType) {
       if (selectedType.name === type) {
         setTypeHandle("");
@@ -104,8 +111,6 @@ export default function App() {
         });
       }
 
-      // setTotalList(handlePokemonList.length);
-
       handlePokemonList = handlePokemonList.filter((pokemon, index) => {
         if (index >= offset - LIMIT_LIST && index < offset) {
           return pokemon;
@@ -141,8 +146,8 @@ export default function App() {
   }, [pokemonData, offset, searchPokemon, selectedType]); // eslint-disable-line
 
   return (
-    <div className="w-full bg-neutral-800 md:h-screen flex flex-col lg:flex-row ">
-      <div className="w-full flex flex-col overflow-hidden lg:w-80 xl:w-96 bg-red-600 p-5 gap-5 lg:gap-10 ">
+    <div className="w-full bg-neutral-800 h-screen flex flex-col lg:flex-row ">
+      <div className="w-full z-10 lg:z-0 flex flex-col sticky top-0 lg:relative lg:w-80 xl:w-96 bg-red-600 p-5 gap-5 lg:gap-10 ">
         <div className="flex gap-5">
           <div className="bg-white w-16 rounded-full border-2 flex items-center justify-center border-neutral-900 h-16">
             <div className="w-12 h-12 border-neutral-900 relative bg-blue-500 rounded-full">
@@ -179,17 +184,19 @@ export default function App() {
           placeholder="Search for a pokemon"
         />
 
-        <div className="flex-1 overflow-y-auto">
+        <div
+          className={`flex-1 overflow-hidden duration-500 ${
+            isVisibleFilter ? "block" : "hidden"
+          } lg:block`}
+        >
           <div className="flex flex-col bg-neutral-300 border-2 border-neutral-900 rounded-md">
             <div className="w-full p-5 flex justify-center gap-5">
               <div className="w-4 h-4 bg-red-600 border-2 border-neutral-900 rounded-full" />
               <div className="w-4 h-4 bg-red-600 border-2 border-neutral-900 rounded-full" />
             </div>
             <div className="p-5 flex flex-col gap-5">
-              <h2 className="text-lg font-semibold ">Filters</h2>
-
               <div className="flex flex-col gap-3">
-                <h3 className="font-semibold">Types</h3>
+                <h3 className="font-semibold text-neutral-900">Types</h3>
                 <div className="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-2 gap-2">
                   {types.map((type) => {
                     return (
@@ -212,6 +219,15 @@ export default function App() {
             </div>
           </div>
         </div>
+
+        <button
+          onClick={toggleIsVisibleFilter}
+          className={`w-10 h-10 duration-200 bg-neutral-800 rounded-xl p-2 border-2 border-neutral-700 self-end lg:hidden ${
+            isVisibleFilter ? "rotate-180" : ""
+          }`}
+        >
+          <ChevronDownIcon className="h-full w-full text-neutral-200" />
+        </button>
       </div>
 
       <div className="flex-1 flex flex-col px-5 md:px-10 py-20 md:overflow-y-auto">
